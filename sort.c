@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operators.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sharsune <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:03:48 by sharsune          #+#    #+#             */
-/*   Updated: 2023/02/13 17:03:51 by sharsune         ###   ########.fr       */
+/*   Created: 2023/02/16 17:31:05 by sharsune          #+#    #+#             */
+/*   Updated: 2023/02/16 17:31:07 by sharsune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *stack_a)
+void	copy_sort(t_stack *stack_a, t_stack *temp)
 {
-	swap(stack_a);
-	ft_printf("sa\n");
+
+
+
 }
 
-void	sb(t_stack *stack_b)
+void	partition_half(t_stack *stack_a, t_stack *stack_b, t_stack *temp)
 {
-	swap(stack_b);
-	ft_printf("sb\n");
-}
+	t_stack	temp;
 
-void	ss(t_stack *stack_a, t_stack *stack_b)
-{
-	swap(stack_a);
-	swap(stack_b);
-	ft_printf("ss\n");
-}
-
-void	swap(t_stack *stack)
-{
-	int	temp;
-
-	temp = stack->ptr[stack->size - 1];
-	stack->ptr[stack->size - 1] = stack->ptr[stack->size - 2];
-	stack->ptr[stack->size - 2] = temp;
+	copy_sort(&stack_a, &temp);
 }

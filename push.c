@@ -17,25 +17,27 @@ void	pa(t_stack *a, t_stack *b)
 	a->ptr[a->size] = b->ptr[b->size - 1];
 	a->size++;
 	b->size--;
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack *a, t_stack *b)
 {
-	b->ptr[b->size] = a->ptr[a->size];
+	b->ptr[b->size] = a->ptr[a->size - 1];
 	b->size++;
 	a->size--;
+	ft_printf("pb\n");
 }
 
 void	ra(t_stack *stack_a)
 {
 	rotate(stack_a);
-	ft_printf("ra");
+	ft_printf("ra\n");
 }
 
 void	rb(t_stack *stack_b)
 {
 	rotate(stack_b);
-	ft_printf("rb");
+	ft_printf("rb\n");
 }
 
 void	rotate(t_stack *stack)
@@ -44,10 +46,10 @@ void	rotate(t_stack *stack)
 	int	temp;
 
 	i = 1;
-	temp = stack->ptr[stack->size];
+	temp = stack->ptr[stack->size - 1];
 	while (i < stack->size)
 	{
-		stack->ptr[stack->size] = stack->ptr[stack->size - i];
+		stack->ptr[stack->size - i] = stack->ptr[stack->size - i - 1];
 		i++;
 	}
 	stack->ptr[0] = temp;

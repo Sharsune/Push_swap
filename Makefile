@@ -14,11 +14,11 @@ NAME = push_swap
 
 LIBFT = libft.a
 
-SRC = push_swap.c operators.c
+SRC = push_swap.c swap.c push.c rotates.c sort.c
 
 OSRC = $(SRC:%.c=%.o)
 
-WWW = -Wall -Wextra -Werror
+WWW = -Wall -Wextra -Werror -fsanitize=address
 
 all: $(LIBFT) $(NAME)
 
