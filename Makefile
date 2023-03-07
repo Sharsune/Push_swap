@@ -14,7 +14,7 @@ NAME = push_swap
 
 LIBFT = libft.a
 
-SRC = push_swap.c swap.c push.c rotates.c sort.c
+SRC = push_swap.c swap.c push.c rotates.c sort.c create_stacks.c
 
 OSRC = $(SRC:%.c=%.o)
 
@@ -26,7 +26,7 @@ $(LIBFT):
 	make -C libft
 
 $(NAME): $(OSRC)
-	cc $(WWW) $(OSRC) -L libft/ -lft -lmlx -framework OpenGL -framework Appkit -o $(NAME)
+	cc $(WWW) $(OSRC) -L libft/ -lft -o $(NAME)
 
 clean:
 	rm -f $(OSRC)

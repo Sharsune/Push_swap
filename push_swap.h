@@ -39,8 +39,11 @@ void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 void	print_stack(t_stack *stack);
-void	rank_sorted(t_stack *sorted, t_stack *stack_a);
+void	make_sorted(t_stack *sorted, t_stack *stack_a);
+void	make_temp(t_stack *stack_a, t_stack *temp);
 void	copy_sort(t_stack *stack_a, t_stack *temp);
 void	partition_half(t_stack *stack_a, t_stack *stack_b, t_stack *sorted);
+void	partition_chunk(t_stack *stack_a, t_stack *stack_b, t_stack *temp, int size);
+void	sort_a(t_stack *a);
 
 #endif

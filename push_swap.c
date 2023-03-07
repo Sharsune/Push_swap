@@ -12,83 +12,11 @@
 
 #include "push_swap.h"
 
-void	rank_sorted(t_stack *sorted, t_stack *stack_a)
+void	sort_b(t_stack *a, t_stack *b, t_stack *sorted)
 {
-	int	i;
-	int	x;
-	int	count;
 
-	i = 0;
-	while (i < stack_a->size)
-	{
-		x = 0;
-		count = 0;
-		while (x < stack_a->size)
-		{
-			if (stack_a->ptr[i] > stack_a->ptr[x])
-				count++;
-			x++;
-		}
-		sorted->ptr[count] = stack_a->ptr[i];
-		sorted->size++;
-		i++;
-	}
-}
 
-void	init_main_stack(t_stack *stack_a, char **argv, int argc)
-{
-	int	i;
-	int	x;
 
-	i = 0;
-	x = 1;
-	stack_a->size = (argc - 1);
-	while (i < stack_a->size)
-	{
-		stack_a->ptr[stack_a->size - i - 1] = ft_atoi(argv[x]);
-		i++;
-		x++;
-	}
-}
-
-int	init_stack_1(t_stack *stack_a, t_stack *stack_b, int size)
-{
-	stack_a->size = 0;
-	stack_b->size = 0;
-	stack_a->ptr = malloc(sizeof(int) * size);
-	if (!stack_a->ptr)
-	{
-		free(stack_a->ptr);
-		return (0);
-	}
-	stack_b->ptr = malloc(sizeof(int) * size);
-	if (!stack_b->ptr)
-	{
-		free(stack_a->ptr);
-		free(stack_b->ptr);
-		return (0);
-	}
-	return (1);
-}
-
-int	init_stack_2(t_stack *sorted, t_stack *temp, int size)
-{
-	sorted->size = 0;
-	temp->size = 0;
-	sorted->ptr = malloc(sizeof(int) * size);
-	if (!sorted->ptr)
-	{
-		free(sorted->ptr);
-		return (0);
-	}
-	temp->ptr = malloc(sizeof(int) * size);
-	if (!temp->ptr)
-	{
-		free(sorted->ptr);
-		free(temp->ptr);
-		return (0);
-	}
-	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -106,13 +34,16 @@ int	main(int argc, char **argv)
 		return (ft_printf("Malloc error."));
 	}
 	init_main_stack(&stack_a, argv, argc);
-	rank_sorted(&sorted, &stack_a);
+	make_sorted(&sorted, &stack_a);
+	while (stack_a.size > 120)
+		partition_chunk(&stack_a, &stack_b, &temp, 60);
 	while (stack_a.size > 3)
 		partition_half(&stack_a, &stack_b, &temp);
-	print_stack(&sorted);
+	sort_a(&stack_a);
 	return (0);
 }
 
+//remember to delete this function
 void	print_stack(t_stack *stack)
 {
 	int	size;

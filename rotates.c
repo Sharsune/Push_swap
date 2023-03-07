@@ -45,7 +45,6 @@ void	reverse_rotate(t_stack *stack)
 
 	i = 0;
 	temp = stack->ptr[0];
-	ft_printf("temp is: %d\n", temp);
 	while (i < stack->size - 1)
 	{
 		stack->ptr[i] = stack->ptr[i + 1];
