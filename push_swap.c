@@ -14,32 +14,121 @@
 
 void	sort_b(t_stack *a, t_stack *b, t_stack *sorted)
 {
+	int	count;
+	int	i;
 
+	count = sorted->size - a->size - 1;
+	while (count + 1)
+	{
+		ft_printf("number is:%d\n", sorted->ptr[count]);
+		print_stack(b);
+		i = find_next(b, sorted->ptr[count]);
+		if (b->ptr[b->size - 1] == b->ptr[b->size - i - 1])
+		{
+			pa(a, b);
+			count--;
+		}
+		else if (b->ptr[b->size - 2] == b->ptr[b->size - i - 1])
+			sb(b);
+		else
+		{
+			move_nb(b, sorted, i, count);
+			pa(a, b);
+			count--;
+		}
+	}
+}
+if
+	move_nb(next)
+else
+	mov_nb(next2)
+	move_nb(next)
+	sa;
+void	move_nb(t_stack *b, t_stack *sorted, int next, int count)
+{
+	int	next2;
+	int	moves;
+	int	moves2;
 
+	next2 = find_next(b, sorted->ptr[count - 1]);
+	moves = count_move(b, next);
+	moves2 = count_move(b, next2);
+	if (moves < moves2)
+	{
+		while (moves > 0)
+		{
+			if (check_rotate(b, next, moves))
+			{
+				rb(b);
+			}
+			else
+				rrb(b);
+			moves--;
+		}
+	}
+	else
+	{
+		while (moves2 > 0)
+		{
+			if (check_rotate(b, next2, moves2))
+			{
+				rb(b);
+			}
+			else
+				rrb(b);
+			moves2--;
+		}
+	}
+}
 
+int	count_move(t_stack *b, int next)
+{
+	int	moves;
+
+	moves = next;
+	if (b->size - moves < next)
+		moves = b->size - next;
+	ft_printf("moves:%d\n", moves);
+	return (moves);
+}
+
+int	find_next(t_stack *b, int nb)
+{
+	int	i;
+
+	i = 0;
+	while (b->ptr[b->size - i - 1] != nb && i < b->size)
+	{
+		i++;
+	}
+	return (i);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	stack_a;
-	t_stack	stack_b;
+	t_stack	a;
+	t_stack	b;
 	t_stack	sorted;
 	t_stack	temp;
 
-	init_stack_1(&stack_a, &stack_b, (argc - 1));
+	init_stack_1(&a, &b, (argc - 1));
 	if (!init_stack_2(&sorted, &temp, (argc - 1)))
 	{
-		free(stack_a.ptr);
-		free(stack_b.ptr);
+		free(a.ptr);
+		free(b.ptr);
 		return (ft_printf("Malloc error."));
 	}
-	init_main_stack(&stack_a, argv, argc);
-	make_sorted(&sorted, &stack_a);
-	while (stack_a.size > 120)
-		partition_chunk(&stack_a, &stack_b, &temp, 60);
-	while (stack_a.size > 3)
-		partition_half(&stack_a, &stack_b, &temp);
-	sort_a(&stack_a);
+	init_main_stack(&a, argv, argc);
+	make_sorted(&sorted, &a);
+	while (a.size > 120)
+		partition_chunk(&a, &b, &temp, 60);
+	while (a.size > 3)
+		partition_half(&a, &b, &temp);
+	sort_a(&a);
+	//print_stack(&a);
+	//print_stack(&b);
+	sort_b(&a, &b, &sorted);
+	//print_stack(&a);
 	return (0);
 }
 

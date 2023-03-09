@@ -12,22 +12,22 @@
 
 #include "push_swap.h"
 
-void	sa(t_stack *stack_a)
+void	sa(t_stack *a)
 {
-	swap(stack_a);
+	swap(a);
 	ft_printf("sa\n");
 }
 
-void	sb(t_stack *stack_b)
+void	sb(t_stack *b)
 {
-	swap(stack_b);
+	swap(b);
 	ft_printf("sb\n");
 }
 
-void	ss(t_stack *stack_a, t_stack *stack_b)
+void	ss(t_stack *a, t_stack *b)
 {
-	swap(stack_a);
-	swap(stack_b);
+	swap(a);
+	swap(b);
 	ft_printf("ss\n");
 }
 

@@ -28,15 +28,15 @@ void	pb(t_stack *a, t_stack *b)
 	ft_printf("pb\n");
 }
 
-void	ra(t_stack *stack_a)
+void	ra(t_stack *a)
 {
-	rotate(stack_a);
+	rotate(a);
 	ft_printf("ra\n");
 }
 
-void	rb(t_stack *stack_b)
+void	rb(t_stack *b)
 {
-	rotate(stack_b);
+	rotate(b);
 	ft_printf("rb\n");
 }
 

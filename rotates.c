@@ -12,29 +12,29 @@
 
 #include "push_swap.h"
 
-void	rr(t_stack *stack_a, t_stack *stack_b)
+void	rr(t_stack *a, t_stack *b)
 {
-	rotate(stack_a);
-	rotate(stack_b);
+	rotate(a);
+	rotate(b);
 	ft_printf("rr\n");
 }
 
-void	rra(t_stack *stack_a)
+void	rra(t_stack *a)
 {
-	reverse_rotate(stack_a);
+	reverse_rotate(a);
 	ft_printf("rra\n");
 }
 
-void	rrb(t_stack *stack_b)
+void	rrb(t_stack *b)
 {
-	reverse_rotate(stack_b);
+	reverse_rotate(b);
 	ft_printf("rrb\n");
 }
 
-void	rrr(t_stack *stack_a, t_stack *stack_b)
+void	rrr(t_stack *a, t_stack *b)
 {
-	reverse_rotate(stack_a);
-	reverse_rotate(stack_b);
+	reverse_rotate(a);
+	reverse_rotate(b);
 	ft_printf("rrr\n");
 }
 

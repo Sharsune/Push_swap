@@ -1,20 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_stacks.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sharsune <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 13:34:05 by sharsune          #+#    #+#             */
+/*   Updated: 2023/03/07 13:34:07 by sharsune         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int	init_stack_1(t_stack *stack_a, t_stack *stack_b, int size)
+int	init_stack_1(t_stack *a, t_stack *b, int size)
 {
-	stack_a->size = 0;
-	stack_b->size = 0;
-	stack_a->ptr = malloc(sizeof(int) * size);
-	if (!stack_a->ptr)
+	a->size = 0;
+	b->size = 0;
+	a->ptr = malloc(sizeof(int) * size);
+	if (!a->ptr)
 	{
-		free(stack_a->ptr);
+		free(a->ptr);
 		return (0);
 	}
-	stack_b->ptr = malloc(sizeof(int) * size);
-	if (!stack_b->ptr)
+	b->ptr = malloc(sizeof(int) * size);
+	if (!b->ptr)
 	{
-		free(stack_a->ptr);
-		free(stack_b->ptr);
+		free(a->ptr);
+		free(b->ptr);
 		return (0);
 	}
 	return (1);
@@ -40,63 +52,63 @@ int	init_stack_2(t_stack *sorted, t_stack *temp, int size)
 	return (1);
 }
 
-void	init_main_stack(t_stack *stack_a, char **argv, int argc)
+void	init_main_stack(t_stack *a, char **argv, int argc)
 {
 	int	i;
 	int	x;
 
 	i = 0;
 	x = 1;
-	stack_a->size = (argc - 1);
-	while (i < stack_a->size)
+	a->size = (argc - 1);
+	while (i < a->size)
 	{
-		stack_a->ptr[stack_a->size - i - 1] = ft_atoi(argv[x]);
+		a->ptr[a->size - i - 1] = ft_atoi(argv[x]);
 		i++;
 		x++;
 	}
 }
 
-void	make_sorted(t_stack *sorted, t_stack *stack_a)
+void	make_sorted(t_stack *sorted, t_stack *a)
 {
 	int	i;
 	int	x;
 	int	count;
 
 	i = 0;
-	while (i < stack_a->size)
+	while (i < a->size)
 	{
 		x = 0;
 		count = 0;
-		while (x < stack_a->size)
+		while (x < a->size)
 		{
-			if (stack_a->ptr[i] > stack_a->ptr[x])
+			if (a->ptr[i] > a->ptr[x])
 				count++;
 			x++;
 		}
-		sorted->ptr[count] = stack_a->ptr[i];
+		sorted->ptr[count] = a->ptr[i];
 		sorted->size++;
 		i++;
 	}
 }
 
-void	make_temp(t_stack *stack_a, t_stack *temp)
+void	make_temp(t_stack *a, t_stack *temp)
 {
 	int	i;
 	int	x;
 	int	count;
 
 	i = 0;
-	while (i < stack_a->size)
+	while (i < a->size)
 	{
 		x = 0;
 		count = 0;
-		while (x < stack_a->size)
+		while (x < a->size)
 		{
-			if (stack_a->ptr[i] > stack_a->ptr[x])
+			if (a->ptr[i] > a->ptr[x])
 				count++;
 			x++;
 		}
-		temp->ptr[count] = stack_a->ptr[i];
+		temp->ptr[count] = a->ptr[i];
 		i++;
 	}
 }
