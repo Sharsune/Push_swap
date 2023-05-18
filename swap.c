@@ -39,3 +39,32 @@ void	swap(t_stack *stack)
 	stack->ptr[stack->size - 1] = stack->ptr[stack->size - 2];
 	stack->ptr[stack->size - 2] = temp;
 }
+
+void	check_digits(t_stack *a, t_stack *b, char **argv, int begin)
+{
+	int	i;
+	int	k;
+
+	k = begin;
+	while (argv[k])
+	{
+		i = 0;
+		if (argv[k][i] == '-' || argv[k][i] == '+')
+			i++;
+		if (!argv[k][i] || !ft_isdigit(argv[k][i]))
+		{
+			free_a_b(a, b);
+			error_exit();
+		}
+		while (argv[k][i])
+		{
+			if (!ft_isdigit(argv[k][i]))
+			{
+				free_a_b(a, b);
+				error_exit();
+			}
+			i++;
+		}
+		k++;
+	}
+}

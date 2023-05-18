@@ -14,18 +14,18 @@ NAME = push_swap
 
 LIBFT = libft.a
 
-SRC = push_swap.c swap.c push.c rotates.c sort.c create_stacks.c
+SRC = push_swap.c swap.c push.c rotates.c sort.c create_stacks.c errors.c checks.c errors_2.c
 
 OSRC = $(SRC:%.c=%.o)
 
-WWW = -Wall -Wextra -Werror -fsanitize=address
+WWW = -Wall -Wextra -Werror
 
 all: $(LIBFT) $(NAME)
 
 $(LIBFT):
 	make -C libft
 
-$(NAME): $(OSRC)
+$(NAME): $(OSRC) $(LIBFT)
 	cc $(WWW) $(OSRC) -L libft/ -lft -o $(NAME)
 
 clean:

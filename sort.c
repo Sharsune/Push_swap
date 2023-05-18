@@ -50,48 +50,53 @@ void	partition_half(t_stack *a, t_stack *b, t_stack *temp)
 	int	median_b;
 
 	copy_sort(a, temp);
-	median = temp->size / 2;
-	median_b = median / 2;
-	count = median;
+	median = temp->ptr[temp->size / 2];
+	median_b = temp->ptr[temp->size / 4];
+	count = temp->size / 2;
 	while (count)
 	{
-		if (a->ptr[a->size - 1] < temp->ptr[median])
+		if (a->ptr[a->size - 1] < median)
 		{
 			pb(a, b);
-			if (b->ptr[b->size - 1] < temp->ptr[median_b])
+			if (b->ptr[b->size - 1] < median_b)
 				rb(b);
+			count--;
 		}
 		else
 			ra(a);
-		count--;
 	}
 }
 
 void	partition_chunk(t_stack *a, t_stack *b, t_stack *temp, int size)
 {
-	int	median;
-	int	median_b;
+	int	max;
+	int	max_b;
 
 	copy_sort(a, temp);
-	median = temp->ptr[size];
-	median_b = temp->ptr[size / 2];
+	max = temp->ptr[size];
+	max_b = temp->ptr[size / 2];
 	while (size)
 	{
-		if (a->ptr[a->size - 1] < temp->ptr[median])
+		if (a->ptr[a->size - 1] < max)
 		{
 			pb(a, b);
-			if (b->ptr[b->size - 1] < temp->ptr[median_b])
+			if (b->ptr[b->size - 1] < max_b)
 				rb(b);
+			size--;
 		}
 		else
 			ra(a);
-		size--;
 	}
 }
 
-int	check_rotate(t_stack *b, int next, int moves)
+int	check_rotate(t_stack *b, int next)
 {
-	if (b->size - next <= moves)
-		return (0);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (i < b->size && b->ptr[i] != next)
+		i++;
+	if (b->size - i <= i)
+		return (1);
+	return (0);
 }
