@@ -6,7 +6,7 @@
 #    By: sharsune <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 17:01:10 by sharsune          #+#    #+#              #
-#    Updated: 2023/02/13 17:01:15 by sharsune         ###   ########.fr        #
+#    Updated: 2023/05/19 14:02:42 by Sharsune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,10 @@ OSRC = $(SRC:%.c=%.o)
 
 WWW = -Wall -Wextra -Werror
 
-all: $(LIBFT) $(NAME)
+all: $(NAME)
 
-$(LIBFT):
+$(NAME): $(OSRC)
 	make -C libft
-
-$(NAME): $(OSRC) $(LIBFT)
 	cc $(WWW) $(OSRC) -L libft/ -lft -o $(NAME)
 
 clean:
